@@ -2,10 +2,10 @@
   "domain": "camera_record_services",
   "name": "Camera Record Services",
   "version": "0.9.0",
-  "documentation": "https://github.com/GITHUB_USERNAME/GITHUB_REPO_NAME",
+  "documentation": "https://github.com/vahagit/camera_record_services",
   "homeassistant": "2024.1.1",
   "dependencies": ["camera", "stream"],
-  "codeowners": ["@GITHUB_USERNAME"],
+  "codeowners": ["@vahagit"],
   "requirements": [],
   "iot_class": "local_push",
   "config_flow": true
