@@ -55,7 +55,7 @@ A more configurable version of the built-in `camera.record`. Records a camera st
 service: camera_record_services.camera_start_recording
 data:
   entity_id: camera.front_door
-  filename: /media/clips/front_door.mp4
+  filename: "/media/clips/front_door_{{ now().strftime('%Y%m%d_%H%M%S') }}.mp4"
   duration: 60
   lookback: 5
   stop_state_id: binary_sensor.front_door_motion
@@ -63,7 +63,7 @@ data:
   extend_running_task: true
 ```
 
-In this example, HA will start recording `camera.front_door` to `/media/clips/front_door.mp4` for up to 60 seconds, prepending the last 5 seconds of the existing stream buffer at the start of the clip. At the same time, it will also watch `binary_sensor.front_door_motion` - if that sensor's state changes to `"off"` before the 60 seconds are up, the recording will stop immediately at that point. Whichever happens first - the `duration` expiring or the sensor reaching `"off"` - will end the recording. If this service is called again for the same camera while it is already recording, the currently running recording will be extended (its timer reset) rather than the new request being dropped, because `extend_running_task` is `true`.
+In this example, HA will start recording `camera.front_door` to `/media/clips/front_door_YYYYMMDD_HHMMSS.mp4` for up to 60 seconds, prepending the last 5 seconds of the existing stream buffer at the start of the clip. At the same time, it will also watch `binary_sensor.front_door_motion` - if that sensor's state changes to `"off"` before the 60 seconds are up, the recording will stop immediately at that point. Whichever happens first - the `duration` expiring or the sensor reaching `"off"` - will end the recording. If this service is called again for the same camera while it is already recording, the currently running recording will be extended (its timer reset) rather than the new request being dropped, because `extend_running_task` is `true`.
 
 _Note: Even if the recording is extended, `stop_state_id` (changing to `stop_state_value`) will still be in a race with `duration` to finish the recording._
 
