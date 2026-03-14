@@ -4,7 +4,9 @@ A Home Assistant custom integration that provides an alternative camera recordin
 
 ## Why does this exist?
 
-Home Assistant's built-in `camera.record` is a clean, well-integrated service, but it is intentionally limited in what it exposes to automations. This integration is a more direct, "hacked" wrapper around the same underlying HA stream component that `camera.record` uses - accessing it at a lower level to expose additional control that the official service deliberately does not offer.
+Home Assistant's built-in `camera.record` is a clean, well-integrated service, but it is intentionally limited in what it exposes to automations, to keep it 100% stable.
+
+This integration is a more direct, "hacked" wrapper around the same underlying HA stream component that `camera.record` uses - accessing it at a lower level to expose additional control that the official service deliberately does not offer (to ensure 100% stability).
 
 ## Features
 
