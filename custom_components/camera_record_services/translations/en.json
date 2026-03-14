@@ -1,0 +1,21 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Camera Record Services",
+        "description": "Add the Camera Record Services integration. No configuration is required."
+      }
+    },
+    "abort": {
+      "single_instance_allowed": "Already configured. Only a single configuration is possible."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Usage Guide",
+        "description": "## camera_record_services.camera_start_recording\n\nStart recording a camera stream to a file.\n\n| Parameter | Required | Default | Description |\n|---|---|---|---|\n| `entity_id` | yes | — | Camera entity to record, e.g. `camera.front_door` |\n| `filename` | yes | — | Full path for the output file, e.g. `/media/clip.mp4` |\n| `duration` | no | `30` | Maximum recording length in seconds |\n| `lookback` | no | `0` | Seconds of stream buffer to include before the call |\n| `stop_state_id` | no | — | Entity to watch for an early-stop trigger |\n| `stop_state_value` | no | — | State value that triggers the early stop |\n| `extend_running_task` | no | `true` | Extend current recording if already in progress |\n\n`stop_state_id` and `stop_state_value` must be provided together or not at all.\n\n---\n\n## camera_record_services.camera_stop_recording\n\nStop an in-progress recording immediately.\n\n| Parameter | Required | Description |\n|---|---|---|\n| `entity_id` | yes | Camera entity whose recording should be stopped |\n\nBest-effort — silently does nothing if no recording is in progress."
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+camera_start_recording:
+  name: Start recording
+  description: "Record a camera stream to a file. Stops after the set duration, or earlier if a watched entity reaches the specified state."
+  fields:
+    entity_id:
+      name: Camera
+      description: Camera to record.
+      required: true
+      selector:
+        entity:
+          domain: camera
+    filename:
+      name: Filename
+      description: "Full path for the output file, e.g. /media/clips/front.mp4"
+      required: true
+      example: "/media/clip.mp4"
+      selector:
+        text:
+    duration:
+      name: Duration
+      description: Maximum recording length. Recording stops automatically when reached.
+      default: 30
+      selector:
+        number:
+          min: 1
+          max: 3600
+          unit_of_measurement: seconds
+    lookback:
+      name: Lookback
+      description: "Seconds of pre-recorded buffer to include before this call. Only works if the camera stream is already running. Actual lookback may be less than requested depending on the stream buffer."
+      default: 0
+      selector:
+        number:
+          min: 0
+          max: 300
+          unit_of_measurement: seconds
+    stop_state_id:
+      name: Stop entity
+      description: "Entity to watch for an early stop. Races against duration — whichever occurs first stops the recording. Must be used with stop_state_value."
+      required: false
+      selector:
+        entity:
+    stop_state_value:
+      name: Stop state value
+      description: "State value that triggers the early stop, e.g. off. Must be used with stop_state_id."
+      required: false
+      selector:
+        text:
+    extend_running_task:
+      name: Extend if already recording
+      description: "If the camera is already recording, extend the current recording instead of ignoring this request. If false, the request is silently ignored."
+      default: true
+      selector:
+        boolean:
+
+camera_stop_recording:
+  name: Stop recording
+  description: "Stop an in-progress recording immediately, whether started by this service or by camera.record. Does nothing if the camera is not recording."
+  fields:
+    entity_id:
+      name: Camera
+      description: Camera to stop recording.
+      required: true
+      selector:
+        entity:
+          domain: camera
