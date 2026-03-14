@@ -42,7 +42,7 @@ camera_start_recording:
         entity:
     stop_state_value:
       name: Stop state value
-      description: "State value that triggers the early stop, e.g. off. Must be used with stop_state_id."
+      description: "State value that triggers the early stop, e.g. 'off'. Must be used with stop_state_id."
       required: false
       selector:
         text:
